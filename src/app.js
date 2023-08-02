@@ -4,6 +4,7 @@ import express from 'express';
 import { buttonsRouter } from './routes/buttons.router.js';
 import { connectMongo } from './utils.js';
 import session from 'express-session';
+import { usersRouter } from './routes/users.router.js';
 dotenv.config();
 
 const PORT = process.env.PORT || 8090;
@@ -34,6 +35,7 @@ app.use(
 );
 
 app.use('/api/buttons', buttonsRouter);
+app.use('/api/users', usersRouter);
 
 app.get('/*', async (req, res) => {
   return res.status(404).json({ status: 'error', msg: 'no encontrado', data: {} });
